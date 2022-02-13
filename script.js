@@ -3,6 +3,7 @@ const gridContainer = document.getElementById("grid-container")
 const cells = document.getElementsByClassName("cell")
 const clear = document.getElementById("clear")
 const colorChange = document.getElementById("change-color")
+const randomButton = document.getElementById("random")
 
 const changeGridSize = (size, ref) => {
     ref.nextElementSibling.textContent = `${size}x${size}`
@@ -25,7 +26,6 @@ const removeGrid = () => {
 }
 
 const addChangeColorInHover = (cells, color) => {
-    console.log("trigger")
     Array.from(cells).forEach(cell => cell.addEventListener("mouseenter", (e) => {
         e.target.style.backgroundColor = color;
     }))
@@ -35,16 +35,21 @@ const clearColor = () => {
     Array.from(cells).forEach(cell => cell.style.backgroundColor = "#fff")
 }
 
-//on window load
-const start = () => {
-
-    window.addEventListener("load", () => {
-        changeGridSize(gridSize.value, gridSize)
-        addChangeColorInHover(cells, colorChange.value)
-    })
-
+const generateRandomColor = () => {
+    let randCol =  "#" + Math.floor(Math.random() * 16777215).toString(16)
+    addChangeColorInHover(cells,randCol)
 }
-start()
+
+const loopGenerateRandomColor = () => {
+    Array.from(cells).forEach(cell=> cell.addEventListener("mouseenter", generateRandomColor))
+}
+
+
+window.addEventListener("load", () => {
+    changeGridSize(gridSize.value, gridSize)
+    addChangeColorInHover(cells, colorChange.value)
+})
+
 
 
 gridSize.addEventListener("input", (e)=>{
@@ -53,7 +58,13 @@ gridSize.addEventListener("input", (e)=>{
     addChangeColorInHover(cells, colorChange.value)
 })
 
+colorChange.addEventListener("input", (e) => {
+    Array.from(cells).forEach(cell=> cell.removeEventListener("mouseenter", generateRandomColor))
+    addChangeColorInHover(cells, e.target.value)
+})
 
 clear.addEventListener("click", clearColor)
 
-colorChange.addEventListener("change", (e) => addChangeColorInHover(cells, e.target.value))
+randomButton.addEventListener("click", loopGenerateRandomColor)
+
+
