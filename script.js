@@ -2,6 +2,7 @@ const gridSize = document.getElementById("grid-size");
 const gridContainer = document.getElementById("grid-container")
 const cells = document.getElementsByClassName("cell")
 const clear = document.getElementById("clear")
+const colorChange = document.getElementById("change-color")
 
 const changeGridSize = (size, ref) => {
     ref.nextElementSibling.textContent = `${size}x${size}`
@@ -23,14 +24,11 @@ const removeGrid = () => {
     }   
 }
 
-const addChangeColorInHover = (cells, color="#262626") => {
+const addChangeColorInHover = (cells, color) => {
+    console.log("trigger")
     Array.from(cells).forEach(cell => cell.addEventListener("mouseenter", (e) => {
         e.target.style.backgroundColor = color;
     }))
-}
-
-const pickColor = () => {
-    return false
 }
 
 const clearColor = () => {
@@ -42,12 +40,9 @@ const start = () => {
 
     window.addEventListener("load", () => {
         changeGridSize(gridSize.value, gridSize)
+        addChangeColorInHover(cells, colorChange.value)
     })
-    
-    
-    window.addEventListener("load", () => {
-        addChangeColorInHover(cells)
-    })
+
 }
 start()
 
@@ -55,8 +50,10 @@ start()
 gridSize.addEventListener("input", (e)=>{
     removeGrid()
     changeGridSize(e.target.value, gridSize)
-    addChangeColorInHover(cells)
+    addChangeColorInHover(cells, colorChange.value)
 })
 
 
 clear.addEventListener("click", clearColor)
+
+colorChange.addEventListener("change", (e) => addChangeColorInHover(cells, e.target.value))
