@@ -1,4 +1,8 @@
-
+:root{
+    --bg-color: #1e2140;
+    --color-1: #d6dfff;
+    --color-2:#ec676a;
+}
 
 *{
     box-sizing: border-box;
@@ -6,31 +10,40 @@
     margin: 0;
 }
 
+body{
+    background-color: var(--bg-color);
+}
+
+
 .whole-container{
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
+    gap: 1em;
+    padding: 2em;
+    
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
 }
 
 
 #grid-container{
     display: flex;
     flex-direction: column;
-    height: 500px;
-    width: 500px;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
+    height: 550px;
+    width: 550px;
+    background-color: #fff;
 }
 
 #grid-container > div{
+    display:flex;
     flex: 1;
-    border-bottom: 1px solid black;
-    border-collapse: collapse;
 }
 
 #grid-container > div > div{
     flex: 1;
-    border-right: 1px solid black;
-    border-collapse: collapse;
 }
