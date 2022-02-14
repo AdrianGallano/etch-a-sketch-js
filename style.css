@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
 :root{
-    --bg-color: #1e2140;
-    --color-1: #d6dfff;
+    --bg-color: #262626;
+    --color-1: #f2f2f2;
     --color-2:#ec676a;
 }
 
@@ -34,19 +34,25 @@ body{
     gap: 1em;
     justify-content: center;
     align-items: center;
-    color: #d6dfff;
+    color: var(--color-1);
 }
 
 .sidebar button{
     padding: 1em 2em;
-    background-color: var(--color-2);
-    color: #1e2140;
+    background-color: var(--color-1);
+    color: var(--bg-color);
     border: none;
     font-weight: 900;
+    transition: .5s;
 }
 
 .sidebar button:hover{
-    background-color: #d15d5f;
+    background-color: #c7c2c2;
+    transform: translateY(-10%);
+}
+
+.sidebar button:active{
+    background-color: yellow;
 }
 
 #grid-container{
@@ -55,6 +61,7 @@ body{
     height: 550px;
     width: 550px;
     background-color: #fff;
+    box-shadow: 0px 0px 8px 2px grey;
 }
 
 #grid-container > div{
