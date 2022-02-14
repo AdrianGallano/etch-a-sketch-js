@@ -58,7 +58,6 @@ gridSize.addEventListener("input", (e)=>{
     changeGridSize(e.target.value, gridSize)
     if(colorActive == "random color"){
         loopGenerateRandomColor()
-        addChangeColorInHover(cells, colorChange.value)
     }else{
         addChangeColorInHover(cells, colorChange.value)
     }
